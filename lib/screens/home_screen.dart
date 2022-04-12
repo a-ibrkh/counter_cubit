@@ -20,6 +20,12 @@ class MyHomeScreen extends StatefulWidget {
 
 class _MyHomeScreenState extends State<MyHomeScreen> {
   @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +35,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             onPressed: () {
               Navigator.of(context).pushNamed(SettingsScreen.routeName);
             },
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
           ),
         ],
       ),
@@ -67,7 +73,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content:
                       Text(state.isIncrement ? 'Incremented' : 'Decremented!'),
-                  duration: Duration(milliseconds: 100),
+                  duration:const Duration(milliseconds: 10),
                 ));
               },
               builder: (context, state) {
